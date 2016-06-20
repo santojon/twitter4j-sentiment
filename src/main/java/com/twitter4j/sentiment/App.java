@@ -8,7 +8,27 @@ public class App {
         ArrayList<String> tweets = TweetManager.getTweets(topic);
         NLP.init();
         for(String tweet : tweets) {
-            System.out.println(tweet + " : " + NLP.findSentiment(tweet));
+        	int mainSentiment = NLP.findSentiment(tweet);
+        	switch (mainSentiment) {
+            case 0:
+            	System.out.println(tweet + " : Very Negative");
+                break;
+            case 1:
+            	System.out.println(tweet + " : Negative");
+                break;
+            case 2:
+            	System.out.println(tweet + " : Neutral");
+                break;
+            case 3:
+            	System.out.println(tweet + " : Positive");
+                break;
+            case 4:
+            	System.out.println(tweet + " : Very Positive");
+                break;
+            default:
+            	System.out.println(tweet + " : Fail");
+                break;
+            }
         }
     }
 }
