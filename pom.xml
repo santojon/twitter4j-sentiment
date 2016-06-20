@@ -22,4 +22,41 @@
         <version>3.4.1</version>
     </dependency>
   </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+    	<groupId>org.codehaus.mojo</groupId>
+    	<artifactId>exec-maven-plugin</artifactId>
+    	<version>1.2.1</version>
+    	<executions>
+    	  <execution>
+    	    <goals>
+    	      <goal>java</goal>
+    	    </goals>
+    	  </execution>
+    	</executions>
+    	<configuration>
+    	  <mainClass>com.twitter4j.sentiment.SentimentAnalyser</mainClass>
+    	  <arguments>
+    	    <argument>argument1</argument>
+    	  </arguments>
+    	</configuration>
+      </plugin>
+      
+      <plugin>
+          <!-- This plugin will set the properties values using dependency information -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.3</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>properties</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
