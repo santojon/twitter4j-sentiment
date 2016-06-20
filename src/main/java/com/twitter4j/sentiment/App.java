@@ -1,7 +1,7 @@
 package com.twitter4j.sentiment;
 import java.util.ArrayList;
 
-public class SentimentAnalyser {
+public class App {
 
     public static void main(String[] args) {
         String topic = "Restaurants";
