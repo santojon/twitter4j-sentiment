@@ -3,53 +3,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class App {
+	
+	// All Twitter info we get
+	private static ArrayList<TweetRetrievedInfo> allInfo = new ArrayList<TweetRetrievedInfo>();
 
     public static void main(String[] args) {
         String topic = "Restaurants";
         
+        // Get info from Twitter
         HashMap<String, ArrayList<ArrayList<String>>> tweets = TweetManager.getTweets(topic);
+        for(String tweet : tweets.keySet()) {
+        	ArrayList<ArrayList<String>> info = tweets.get(tweet);
+        	allInfo.add(new TweetRetrievedInfo(tweet, info));
+        }
+        
+        // Initialize Classifier
         NLP.init();
         
-        int total = tweets.size();
+        int total = allInfo.size();
         int good = 0, bad = 0, neutral = 0;
         
-        for(String tweet : tweets.keySet()) {
-        	System.out.println();
-        	System.out.println("-------------------------- TWEET --------------------------");
+        for(TweetRetrievedInfo tweet : allInfo) {
         	System.out.println(tweet);
-        	System.out.println();
         	
-        	// Extra info (mentions, hashtags, urls)
-        	ArrayList<ArrayList<String>> info = tweets.get(tweet);
-        	
-        	// Mentions
-        	if (info.get(0).size() > 0) {
-        		System.out.println("---------- MENTIONS ---------");
-        		for (String mention : info.get(0)) {
-        			System.out.println(mention);
-        		}
-        		System.out.println();
-        	}
-        	
-        	// Hastags
-        	if (info.get(1).size() > 0) {
-        		System.out.println("---------- HASTAGS ---------");
-        		for (String tag : info.get(1)) {
-        			System.out.println(tag);
-        		}
-        		System.out.println();
-        	}
-        	
-        	// URLs
-        	if (info.get(2).size() > 0) {
-        		System.out.println("---------- URLS ---------");
-        		for (String url : info.get(2)) {
-        			System.out.println(url);
-        		}
-        		System.out.println();
-        	}
-        	
-        	int mainSentiment = NLP.findSentiment(tweet);
+        	int mainSentiment = NLP.findSentiment(tweet.getText());
         	switch (mainSentiment) {
 	            case 0:
 	            	bad++;

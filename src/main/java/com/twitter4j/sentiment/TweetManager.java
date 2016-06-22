@@ -3,7 +3,6 @@ package com.twitter4j.sentiment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import twitter4j.HashtagEntity;
 import twitter4j.Query;
