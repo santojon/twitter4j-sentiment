@@ -27,6 +27,7 @@ public class App {
         int total = allInfo.size();
         int good = 0, bad = 0, neutral = 0;
         
+        // Analyze info to get sentiment
         for(TweetRetrievedInfo tweet : allInfo) {
         	System.out.println(tweet);
         	
@@ -60,6 +61,7 @@ public class App {
         	System.out.println();
         }
         
+        // Display results
         System.out.println();
         System.out.println();
         System.out.println("---------- RESULTS ---------");

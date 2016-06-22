@@ -3,6 +3,7 @@ package com.twitter4j.sentiment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import twitter4j.HashtagEntity;
 import twitter4j.Query;
@@ -22,7 +23,8 @@ public class TweetManager {
 	private static final int MAX = 100;
 	
 	// Query language 
-	private static final String LANG = "pt-br";
+	private static final String LANG = "en-us";
+	private static final Locale LOCALE = Locale.US;
 
 	/**
 	 * Get all Tweets with the given params
@@ -38,6 +40,7 @@ public class TweetManager {
         	// Create and configure query
             Query query = new Query(topic).count(MAX);
             query.setLang(LANG);
+            query.setLocale(LOCALE.getDisplayLanguage());
             query.setResultType(Query.ResultType.recent);
             
             QueryResult result;

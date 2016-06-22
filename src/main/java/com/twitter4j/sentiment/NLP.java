@@ -22,7 +22,7 @@ public class NLP {
 	 * Responsible to configure the classifier
 	 */
     public static void init() {
-    	props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, sentiment");
+    	props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, depparse, natlog, openie, sentiment");
     	pipeline = new StanfordCoreNLP(props);
     }
 
@@ -31,19 +31,30 @@ public class NLP {
      * Make the sentiment analysis of a tweet
      * 
      * @param tweet
-     * @return
+     * @return an quantified integer sentiment (greater is better)
      */
     public static int findSentiment(String tweet) {
-
+    	// default sentiment value
         int mainSentiment = 0;
+        
         if (tweet != null && tweet.length() > 0) {
             int longest = 0;
+            
+            // Generate a tokenized version of tweet
             Annotation annotation = pipeline.process(tweet);
+            
+            // Parse the text as a tree
             for (CoreMap sentence : annotation
                     .get(CoreAnnotations.SentencesAnnotation.class)) {
+            	
+            	// Analyze each sentence in tweet
                 Tree tree = sentence
                         .get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
+                
+                // Classification itself (get sentiment 'level')
                 int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
+                
+                // Checks if tree ends here
                 String partText = sentence.toString();
                 if (partText.length() > longest) {
                     mainSentiment = sentiment;
