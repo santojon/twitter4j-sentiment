@@ -10,15 +10,29 @@ import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 
+/**
+ * Sentiment classifier base in Standford coreNLP algorithms implementation
+ */
 public class NLP {
+	// Basic needed properties
 	public static Properties props = new Properties();
 	public static StanfordCoreNLP pipeline;
 
+	/**
+	 * Responsible to configure the classifier
+	 */
     public static void init() {
     	props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, sentiment");
     	pipeline = new StanfordCoreNLP(props);
     }
 
+    /**
+     * Classification itself
+     * Make the sentiment analysis of a tweet
+     * 
+     * @param tweet
+     * @return
+     */
     public static int findSentiment(String tweet) {
 
         int mainSentiment = 0;

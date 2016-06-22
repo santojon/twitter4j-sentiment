@@ -2,6 +2,9 @@ package com.twitter4j.sentiment;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Applications entry point
+ */
 public class App {
 	
 	// All Twitter info we get
@@ -20,6 +23,7 @@ public class App {
         // Initialize Classifier
         NLP.init();
         
+        // Taking measures
         int total = allInfo.size();
         int good = 0, bad = 0, neutral = 0;
         

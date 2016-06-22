@@ -2,6 +2,9 @@ package com.twitter4j.sentiment;
 
 import java.util.ArrayList;
 
+/**
+ * Used to make a simpler toString()
+ */
 enum Headers {
 	TWEET("-------------------------- TWEET --------------------------\n"),
 	MENTIONS("---------- MENTIONS ---------\n"),
@@ -24,6 +27,9 @@ enum Headers {
     }
 }
 
+/**
+ * Used to organize information from Twitter
+ */
 public class TweetRetrievedInfo {
 	// Internal!!!
 	

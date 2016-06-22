@@ -14,6 +14,9 @@ import twitter4j.TwitterFactory;
 import twitter4j.URLEntity;
 import twitter4j.UserMentionEntity;
 
+/**
+ * Class responsible to get all the data from Twitter
+ */
 public class TweetManager {
 	// Max tweets per page (100 is the ceiling!!!)
 	private static final int MAX = 100;
@@ -21,6 +24,11 @@ public class TweetManager {
 	// Query language 
 	private static final String LANG = "pt-br";
 
+	/**
+	 * Get all Tweets with the given params
+	 * @param topic
+	 * @return
+	 */
     public static HashMap<String, ArrayList<ArrayList<String>>> getTweets(String topic) {
 
         Twitter twitter = new TwitterFactory().getInstance();
